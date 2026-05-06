@@ -17,8 +17,8 @@ class StatusRepository():
 
 
 
-    async def add_log_by_device_id(self, status:str ,device_id:int):
-        log = StatusModel(status=status,device_id=device_id)
+    async def add_log_by_device_id(self, status:str ,device_id:int, address:int):
+        log = StatusModel(status=status,device_id=device_id,address=address)
         self.db.add(log)
         await self.db.commit()
         await self.db.refresh(log)

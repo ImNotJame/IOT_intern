@@ -6,19 +6,6 @@ from services.modbus_service import modbus_client
 
 
 
-def _normalization_coil_status(response):
-    if response is None:
-        raise HTTPException(status_code=404, detail="Device not found")
-
-
-    if hasattr(response, "isError") and response.isError():
-        raise HTTPException(status_code=500, detail="Modbus error")
-
-
-    bits = getattr(response, "bits", None)
-    if bits is None:
-        raise HTTPException(status_code=500, detail="Modbus error")
-    return "on" if bool(bits[0]) else "off"
 
 async def trigger_service(status:str, session: AsyncSession):
     status_repo = StatusRepository(session)
@@ -33,13 +20,13 @@ async def trigger_service(status:str, session: AsyncSession):
         if current_status["status"] == "off":
             print("status already off")
             return {"status": status}
-    await status_repo.add_log_by_device_id(status, device_id=1)
+    await status_repo.add_log_by_device_id(status, device_id=1, address=0)
     return {"status": status}
 
 
 async def get_status_service(session: AsyncSession):
     response = await modbus_client.read_coil(address=0, device_id=1)
-    return {"status": _normalization_coil_status(response)}
+    return {"status": response.bits[0]}
 
 
 async def get_registers_service(session: AsyncSession):
