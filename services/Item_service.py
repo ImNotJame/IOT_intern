@@ -10,12 +10,10 @@ from schemas.test_schemas import ItemCreate
 
 
 async def create_item_service(item: ItemCreate, db:AsyncSession):
-    print("=== Creating item:", item)
     db_item = ItemDB_model(**item.model_dump())
     db.add(db_item)
     await db.commit()
     await db.refresh(db_item)
-    print("=== Item created:", db_item.id)
     return db_item
 
 async def get_items_service(db:AsyncSession):

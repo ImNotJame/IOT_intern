@@ -1,10 +1,13 @@
+from dotenv import load_dotenv
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime, ForeignKey, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+import os
 
+load_dotenv()
 
-DATABASE_URL = "sqlite+aiosqlite:///./test.db"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 
 engine = create_async_engine(DATABASE_URL)
