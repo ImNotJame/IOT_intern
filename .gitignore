@@ -1,6 +1,65 @@
-.venv/
-*.pyc
-*.db
-.env
-.idea/
-__pycache__/
+# Python
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+*.pytest_cache/
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+cython_debug/
+
+# Testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Database
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db# Python
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+*.pytest_cache/
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+cython_debug/
+
+# Testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+.hypothesis/
+
+# Database
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db
