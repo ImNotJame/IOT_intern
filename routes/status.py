@@ -5,8 +5,9 @@ from fastapi.params import Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from database.database import get_db
 from services.status_service import trigger_service, get_status_service, get_registers_service, get_logs_service
+from util.dependencies import get_current_user
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_current_user)])
 
 @router.post("/status/{status}")
 async def trigger(status: str, session: AsyncSession = Depends(get_db)):

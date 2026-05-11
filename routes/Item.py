@@ -10,8 +10,9 @@ from database.database import get_db
 from schemas.test_schemas import ItemResponse, ItemCreate
 from services.Item_service import create_item_service, update_item_service, get_items_service, delete_item_service, \
     get_item_service
+from util.dependencies import get_current_user
 
-router = APIRouter()
+router = APIRouter(dependencies=[Depends(get_current_user)])
 
 @router.post("/item",response_model=ItemResponse)
 async def create_item(item: ItemCreate, db:AsyncSession = Depends(get_db)):

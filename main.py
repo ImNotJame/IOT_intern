@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from database.database import SessionLocal, init_db, Base
 from routes.Item import router as item_router
 from routes.status import router as status_router
+from routes.auth import router as auth_router
 from services.modbus_service import modbus_client
 from contextlib import asynccontextmanager
 
@@ -31,4 +32,6 @@ app.add_middleware(
 
 app.include_router(status_router, prefix="/api", tags=["status"])
 app.include_router(item_router, prefix="/api", tags=["item"])
+app.include_router(auth_router, prefix="/api/auth", tags=["auth"])
+
 
