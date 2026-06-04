@@ -53,10 +53,17 @@ class UserSessionRepository:
         if not user_session:
             return None
 
-        for key, value in update_data.items():
-            if hasattr(user_session, key):
-                setattr(user_session, key, value)
-
-        await self.db.commit()
-        await self.db.refresh(user_session)
+        # Filter out keys that don't exist on the model
+        valid_data = {k: v for k, v in update_data.items() if hasattr(UserSessionModel, k)}
+        
+        if valid_data:
+            stmt = (
+                update(UserSessionModel)
+                .where(UserSessionModel.id == user_session.id)
+                .values(**valid_data)
+            )
+            await self.db.execute(stmt)
+            await self.db.commit()
+            await self.db.refresh(user_session)
+            
         return user_session

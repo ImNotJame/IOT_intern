@@ -112,9 +112,11 @@ async def refresh_token_service(data: RefreshTokenRequest, session: AsyncSession
             "username": username,
         }
         jwt_token = create_jwt_token(token_data, expire_in=1)
+        refresh_token = create_jwt_token(token_data, expire_in=60)
 
 
         existing_session.user_jwt_token = jwt_token
+        existing_session.user_refresh_token = refresh_token
         await session.commit()
 
         return UserResponse(
