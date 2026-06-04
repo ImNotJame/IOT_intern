@@ -1,19 +1,41 @@
 # Python
-*.pyo
-*.pyd
-.Python
+__pycache__/
+*.py[cod]
+*$py.class
 *.so
-*.egg
-*.egg-info/
-dist/
+.Python
 build/
-pip-wheel-metadata/
-*.pytest_cache/
-.mypy_cache/
-.dmypy.json
-.pyre/
-.pytype/
-cython_debug/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env
+.env.*
+
+# IDEs
+.idea/
+.vscode/
 
 # Testing
 .coverage
@@ -23,38 +45,13 @@ htmlcov/
 coverage.xml
 *.cover
 .hypothesis/
+.pytest_cache/
 
-# Database
-*.sqlite
-*.sqlite3
-
-# OS
-.DS_Store
-Thumbs.db# Python
-*.pyo
-*.pyd
-.Python
-*.so
-*.egg
-*.egg-info/
-dist/
-build/
-pip-wheel-metadata/
-*.pytest_cache/
+# Type checking
 .mypy_cache/
 .dmypy.json
 .pyre/
 .pytype/
-cython_debug/
-
-# Testing
-.coverage
-htmlcov/
-.tox/
-.nox/
-coverage.xml
-*.cover
-.hypothesis/
 
 # Database
 *.sqlite
